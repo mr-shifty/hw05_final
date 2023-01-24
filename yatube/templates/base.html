@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        {% include 'includes/head.html' %}
+        {% load static %}
+        <title>
+            {% block title %}TITLE{% endblock title %}
+        </title>
+    </head>
+    <body>
+        <header>
+            {% include 'includes/nav.html' %}
+        </header>
+        <main>
+            <div class="container py-5">
+                {% block content %} CONTENT {% endblock content %}
+            </div>
+        </main>
+        {% include 'includes/footer.html' %}
+    </body>
+</html>
