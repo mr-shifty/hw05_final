@@ -8,7 +8,7 @@ from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from posts.forms import PostForm, CommentForm
-from posts.models import Group, Post, User, Comments
+from posts.models import Group, Post, User, Comment
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 CREATE_POST = reverse('posts:post_create')
@@ -133,7 +133,7 @@ class PostFormTests(TestCase):
 
     def test_comment_edited_authorized_user(self):
         """Комментировать посты может только авторизованный пользователь"""
-        comments_count = Comments.objects.all().count()
+        comments_count = Comment.objects.all().count()
         form_data = {
             'text': 'Тестовый коммент',
         }
@@ -144,7 +144,7 @@ class PostFormTests(TestCase):
         )
 
         self.assertRedirects(response, '/auth/login/?next=/posts/1/comment/')
-        self.assertEqual(Comments.objects.count(), comments_count)
+        self.assertEqual(Comment.objects.count(), comments_count)
         self.assertFalse(
             Post.objects.filter(
                 text=self.post.text,
@@ -156,7 +156,7 @@ class PostFormTests(TestCase):
         """
         После успешной отпраки комментарий появляется на странице поста
         """
-        comments_count = Comments.objects.all().count()
+        comments_count = Comment.objects.all().count()
         form_data = {
             'post': self.post,
             'author': self.user_author.id,
@@ -170,7 +170,7 @@ class PostFormTests(TestCase):
         )
 
         self.assertRedirects(response, self.POST_DETAIL)
-        self.assertEqual(Comments.objects.count(), comments_count + 1)
+        self.assertEqual(Comment.objects.count(), comments_count + 1)
         self.assertTrue(
             Post.objects.filter(
                 text=self.post.text,
