@@ -58,7 +58,7 @@ class StaticURLTests(TestCase):
         templates_url_names = (
             (INDEX, self.guest_client, HTTPStatus.OK),
             (self.GROUP_LIST, self.guest_client, HTTPStatus.OK),
-            (self.PROFILE, self.authorized_client, HTTPStatus.OK),
+            (self.PROFILE, self.guest_client, HTTPStatus.OK),
             (self.POST_DETAIL, self.guest_client, HTTPStatus.OK),
             (POST_CREATE, self.guest_client, HTTPStatus.FOUND),
             (POST_CREATE, self.author_client, HTTPStatus.OK),
