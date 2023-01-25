@@ -132,7 +132,7 @@ class PostFormTests(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_comment_edited_authorized_user(self):
-        """Комментировать посты может только авторизованный пользователь"""
+        """Комментировать посты может только авторизованный пользователь."""
         comments_count = Comment.objects.all().count()
         form_data = {
             'text': 'Тестовый коммент',
@@ -154,7 +154,7 @@ class PostFormTests(TestCase):
 
     def test_comment_post(self):
         """
-        После успешной отпраки комментарий появляется на странице поста
+        После успешной отпраки комментарий появляется на странице поста.
         """
         comments_count = Comment.objects.all().count()
         form_data = {

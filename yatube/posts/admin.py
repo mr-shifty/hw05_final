@@ -4,7 +4,6 @@ from .models import Group, Post, Comment
 
 
 class PostAdmin(admin.ModelAdmin):
-
     list_display = (
         'pub_date',
         'pk',
@@ -19,7 +18,6 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-
     list_display = ('pk', 'post', 'author', 'text')
     search_fields = ('text',)
     list_filter = ('author',)

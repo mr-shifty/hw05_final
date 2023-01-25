@@ -194,8 +194,11 @@ class PostPagesTests(TestCase):
     def test_cache_index(self):
         """Проверка кэша. При удалении запись остается до очистки кэша."""
         posts1 = self.authorized_client.get(INDEX).content
-        Post.objects.filter(id=1).delete()
         posts2 = self.authorized_client.get(INDEX).content
+        Post.objects.create(
+            author=self.user,
+            text='Проверка кеша',
+        )
         self.assertTrue(posts1 == posts2)
         cache.clear()
         posts3 = self.authorized_client.get(INDEX).content

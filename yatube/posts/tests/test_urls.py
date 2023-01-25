@@ -71,7 +71,6 @@ class StaticURLTests(TestCase):
 
     def test_urls_uses_correct_template(self):
         """URL-адрес использует соответствующий шаблон."""
-
         templates_url_names = (
             (INDEX, 'posts/index.html'),
             (self.GROUP_LIST, 'posts/group_list.html'),
